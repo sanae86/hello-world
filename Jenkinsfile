@@ -7,4 +7,9 @@ node {
      def mvn = tool (name: 'maven3', type: 'maven') + '/bin/mvn'
      sh "${mvn} clean package"
   }
+  stage('slack notification'){
+     slackSend baseUrl: 'https://hooks.slack.com/services/', 
+	channel: '#demo_jenkins-slack', color: 'good', message: 'welcome to jenkins', 
+	tokenCredentialId: 'slack-demo'
+  }
 }
